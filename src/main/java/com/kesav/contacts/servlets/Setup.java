@@ -19,8 +19,7 @@ public class Setup implements ServletContextListener{
 
 	}
 
-	@Override
-	public void contextInitialized(ServletContextEvent sce) {
+	public void contextInitialized2(ServletContextEvent sce) {
 		AddressRepository addressRepository = new AddressRepository();
 		ContactRepository contactRepository = new ContactRepository();
 		try {
@@ -42,6 +41,11 @@ public class Setup implements ServletContextListener{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void contextInitialized(ServletContextEvent arg0) {
+		
 	}
 
 }

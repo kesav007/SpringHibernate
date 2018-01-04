@@ -5,4 +5,8 @@
 	<resource-ref>
 		<res-ref-name>jdbc/trainingdb</res-ref-name>
 	</resource-ref>
+	<servlet-mapping>
+	    <servlet-name>jsp</servlet-name>
+	    <url-pattern>/jsp/*</url-pattern>
+	</servlet-mapping>
 </web-app>

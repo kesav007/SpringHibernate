@@ -2,6 +2,7 @@ package com.kesav.contacts.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +16,13 @@ public class Hello extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		res.setContentType("text/html");
-		res.getWriter().println("<html><head><title>hello1</title></head><body>Hello World !</body></html>");
+/*		
+ * res.setContentType("text/html");
+ * res.getWriter().println("<html><head><title>hello1</title></head><body>Hello World !</body></html>");
+*/
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/hello.jsp");
+		req.setAttribute("vanakam", "Kesav");
+		requestDispatcher.forward(req, res);
 	}
 
 }
