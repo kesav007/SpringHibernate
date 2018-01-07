@@ -16,12 +16,13 @@ public class Hello extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-/*		
- * res.setContentType("text/html");
- * res.getWriter().println("<html><head><title>hello1</title></head><body>Hello World !</body></html>");
-*/
+		/*		
+		 * res.setContentType("text/html");
+		 * res.getWriter().println("<html><head><title>hello1</title></head><body>Hello World !</body></html>");
+		*/
+		String name = req.getParameter("name");
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("jsp/hello.jsp");
-		req.setAttribute("vanakam", "Kesav");
+		req.setAttribute("name", name);
 		requestDispatcher.forward(req, res);
 	}
 
