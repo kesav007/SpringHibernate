@@ -7,7 +7,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="../css/bootstrap.min.css" />
 
 </head>
 <body>
@@ -26,7 +25,7 @@
 					<tr>
 						<td>${address.street}</td>
 						<td>${address.city}</td>
-						<td>${address.state}</td>
+						<td>${address.state.state}</td>
 						<td>${address.zip}</td>
 					</tr>
 				</c:forEach>

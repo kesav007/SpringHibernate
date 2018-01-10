@@ -1,26 +1,27 @@
 <!DOCTYPE form PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" >
-$(document).ready(function(){
-	$("#update").click(function () {
-		$("#updateType").val("update");
-		$("#form").submit();
-	});	
-	$("#delete").click(function () {
-		 if(confirm("Are you sure you want to delete this?")){
-			 $("#updateType").val("delete");	
-	     		$("#form").submit();
-		 }
-		 else {
-			 return false;
-		 }
+	$(document).ready(function(){
+		$("#update").click(function () {
+			$("#updateType").val("update");
+			$("#form").submit();
+		});	
+		$("#delete").click(function () {
+			 if(confirm("Are you sure you want to delete this?")){
+				 $("#updateType").val("delete");	
+		     		$("#form").submit();
+			 }
+			 else {
+				 return false;
+			 }
+		});
 	});
-});
 </script>
 </head>
 <body>
@@ -36,6 +37,7 @@ $(document).ready(function(){
 			</div>
 			<input type="text" class="form-control" name="contactId" value="${contact.id}"  readonly="readonly">
 			<input type="text" class="form-control" id="updateType"  name="updateType" readonly="readonly">
+			<c:set value="${contact.address}" var="address"></c:set>
 			<div class="form-row">
 				<div class="form-group col-md-12">
 					<label for="fname">First Name</label>
@@ -53,7 +55,7 @@ $(document).ready(function(){
 				</div>
 				<div class="form-group col-md-4">
 					<label for="inputState">State</label>
-					<input type="text" class="form-control" id="inputState" name="state" value="${address.state}">
+					<input type="text" class="form-control" id="inputState" name="state" value="${address.state.state}">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="inputZip">Zip</label>
@@ -66,7 +68,7 @@ $(document).ready(function(){
 			<c:if test="${not empty contact.id}" >
 			
 				<button class="btn btn-primary"  id="update">Update</button>
-				<button class="btn btn-primary"  id="delete">Delete</button>
+				<button class="btn btn-danger"  id="delete">Delete</button>
 			</c:if>
 			<a href="contacts" class="btn btn-primary">Back to Contacts</a>
 		</form>

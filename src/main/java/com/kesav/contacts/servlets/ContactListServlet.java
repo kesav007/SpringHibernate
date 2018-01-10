@@ -1,7 +1,6 @@
 package com.kesav.contacts.servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,27 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.kesav.contacts.entities.Contact;
-import com.kesav.contacts.repositories.AddressRepository;
 import com.kesav.contacts.repositories.ContactRepository;
 
 @WebServlet("contacts")
 public class ContactListServlet extends HttpServlet {
+	static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = 1L;
+	Logger log = Logger.getLogger(ContactListServlet.class);
 	private final ContactRepository contactRepository = new ContactRepository();
-	
+
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Contact> contacts = new ArrayList<Contact>();
-		try {
-			contacts.addAll(contactRepository.findAll());
-		} catch (SQLException e) {
-			e.printStackTrace();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		List<Contact> contacts = contactRepository.findAll();
+		for (Contact contact : contacts) {
+			log.debug(contact);
 		}
-		req.setAttribute("contacts", contacts);
-		RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/contacts.jsp");
-		dispatcher.forward(req, res);
+		request.setAttribute("contacts", contacts);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/contacts.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

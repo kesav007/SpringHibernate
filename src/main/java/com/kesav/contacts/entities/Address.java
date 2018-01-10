@@ -1,28 +1,36 @@
 package com.kesav.contacts.entities;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Address {
 
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Column
 	private String street;
+	@Column
 	private String city;
-	private String state;
+	@OneToOne(cascade=CascadeType.ALL)
+	private State state;
+	@Column
 	private String zip;
-	
+
 	public Address() {
-		
+
 	}
 
-	public Address(String street, String city, String state, String zip) {
+	public Address(String street, String city, State state, String zip) {
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
-	}
-
-	@Override
-	public String toString() {
-		return "Address [id=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip
-				+ "]";
 	}
 
 	public Long getId() {
@@ -49,11 +57,11 @@ public class Address {
 		this.city = city;
 	}
 
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 
@@ -65,4 +73,9 @@ public class Address {
 		this.zip = zip;
 	}
 
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip
+				+ "]";
+	}
 }
